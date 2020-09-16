@@ -1,8 +1,14 @@
 import React from 'react'
 import '../styles/subtotal.css'
 import CurrencyFormat from 'react-currency-format';
+import { useStateValue } from "./StateProvider";
+
 
 function Subtotal() {
+    //console.log('subtotal.js', useStateValue()[0])
+    const [{basket, subtotal}] = useStateValue();
+    console.log('sub.js', subtotal)
+
     return (
         <div className="subtotal">
             <CurrencyFormat 
@@ -10,7 +16,7 @@ function Subtotal() {
                     <>
                     <p>
                         {/* Part of the homework */}
-                        Subtotal (0 items): <strong>0</strong>
+                Subtotal ({basket?.length} items): <strong>{subtotal.toFixed(2)}</strong>
                     </p>
 
                     <small className="subtotal__gift">
@@ -20,7 +26,7 @@ function Subtotal() {
                     </>
                 )}
                 decimalScale={2}
-                value={0} //part of homework
+                value={102  } //part of homework
                 displayType={"text"}
                 thousandSeparator={true}
                 prefix={"€"}
